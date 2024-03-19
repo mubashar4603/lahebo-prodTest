@@ -1,8 +1,9 @@
 import requests
+from api.apiAuth import apiAuthEndPoints
 
 
 def getAccessToken(username, password):
-    url = "https://wevmqe5p4i.execute-api.ap-southeast-2.amazonaws.com/prod/auth/login"
+    url = apiAuthEndPoints.loginUser()
     payload = {"username": username, "password": password}
     headers = {}
     response_data = requests.post(url, headers=headers, data=payload)
