@@ -1,19 +1,19 @@
-from api.apiIssue import apiIssueEndPoints
-from utilities import getResponseHttps
+from api.apiAction import apiActionEndPoints
 from utilities import getToken
+from utilities import getResponseHttps
 
 
-class Test_03_Legislation:
-    issueManagement = apiIssueEndPoints.getIssueManagement()
+class Test_04_Legislation:
+    actionCenter = apiActionEndPoints.getActionCenter()
     username = "lahebotest1"
     password = "Lahebo@123"
     token = getToken.getAccessToken(username, password)
 
-    def test_riskAPI(self):
-        responseFromRequest = getResponseHttps.request(self.issueManagement, self.token)
+    def test_actionAPI(self):
+        responseFromRequest = getResponseHttps.request(self.actionCenter, self.token)
         myjson, statusCode = responseFromRequest
         if statusCode == 200:
-            print("\033[92mIssue Management API request is successfully completed: response code is \033[0m",
+            print("\033[92mAction Center API request is successfully completed: response code is \033[0m",
                   "\033[95m" + str(statusCode) + "\033[0m")
             assert True
         else:

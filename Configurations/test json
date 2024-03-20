@@ -1,0 +1,100 @@
+{
+    "usrId": "e3f7def2-bafd-4c92-894c-f986794d0cb2",
+    "username": "lahebotest1",
+    "firstName": "Test",
+    "lastName": "stag01",
+    "fullName": "Test stag01",
+    "email": "lahebotest+1@gmail.com",
+    "phoneNumber": "+61203939398",
+    "mfaRegistered": true,
+    "orgId": "264b356f-ab67-44e1-8549-d770b155b131",
+    "rolId": "bc905564-1873-44be-9c7b-cb288145e82b",
+    "updatedAt": "2024-03-20T07:41:25.784Z",
+    "deletedAt": null,
+    "organization": {
+        "orgId": "264b356f-ab67-44e1-8549-d770b155b131",
+        "name": "Orgstag01",
+        "planStartDate": "2023-09-05T09:36:30.519Z",
+        "planEndDate": "2023-09-05T09:36:30.519Z"
+    },
+    "role": {
+        "rolId": "bc905564-1873-44be-9c7b-cb288145e82b",
+        "name": "SUPER_ADMIN",
+        "permissions": [
+            "RISK_CREATE",
+            "RISK_EDIT",
+            "ORGANISATION_ADMIN"
+        ],
+        "createdAt": "2023-01-30T09:40:04.855Z",
+        "updatedAt": "2023-01-30T09:40:04.855Z"
+    },
+    "locations": [
+        {
+            "locId": "36227077-acee-4512-bf56-5024fc2c703f",
+            "usrId": "e3f7def2-bafd-4c92-894c-f986794d0cb2",
+            "orgId": "264b356f-ab67-44e1-8549-d770b155b131",
+            "name": "loc01",
+            "address": "add01",
+            "phoneNumber": "+61203939393",
+            "isHeadOffice": true
+        },
+        {
+            "locId": "d586a35c-850c-4ea5-8df8-bb28f6b4fe31",
+            "usrId": "e3f7def2-bafd-4c92-894c-f986794d0cb2",
+            "orgId": "264b356f-ab67-44e1-8549-d770b155b131",
+            "name": "loc02",
+            "address": "add02"
+        }
+    ],
+    "departments": [
+        {
+            "depId": "fa15ed4a-b119-4ed6-a1db-70783956a0fd",
+            "usrId": "e3f7def2-bafd-4c92-894c-f986794d0cb2",
+            "orgId": "264b356f-ab67-44e1-8549-d770b155b131",
+            "name": "dept01"
+        },
+        {
+            "depId": "114638a6-34f9-42fd-9da3-355ca991bf35",
+            "usrId": "e3f7def2-bafd-4c92-894c-f986794d0cb2",
+            "orgId": "264b356f-ab67-44e1-8549-d770b155b131",
+            "name": "dept02"
+        }
+    ],
+    "numberOfRegisteredUsers": 4,
+    "stripeLineItem": {
+        "id": "il_1OeEEVJ33d8HZ0FETlVE5Osf",
+        "metadata": {},
+        "period": {
+            "end": 1738231679,
+            "start": 1706609279
+        },
+        "plan": {
+            "id": "price_1OeEE6J33d8HZ0FEEr7EX9UT"
+        },
+        "price": {
+            "id": "price_1OeEE6J33d8HZ0FEEr7EX9UT"
+            "recurring": {
+                "aggregate_usage": null
+            },
+            "tax_behavior": "unspecified"
+        },
+        "proration": false,
+        "proration_details": {
+            "credited_items": null
+        },
+        "quantity": 1,
+        "subscription": "sub_1OeEEVJ33d8HZ0FE84I969Ct",
+        "tax_amounts": [
+            {
+                "amount": 60000,
+            }
+        ],
+        "tax_rates": [
+            {
+                "id": "txr_1NBBmkJ33d8HZ0FEgKJs2GSA",
+            }
+        ],
+        "type": "subscription",
+        "unit_amount_excluding_tax": "600000"
+    }
+}

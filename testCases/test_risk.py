@@ -12,7 +12,6 @@ class Test_03_Legislation:
     def test_riskAPI(self):
         responseFromRequest = getResponseHttps.request(self.riskRegister, self.token)
         myjson, statusCode = responseFromRequest
-
         if statusCode == 200:
             print("\033[92mRisk Register API request is successfully completed: response code is \033[0m",
                   "\033[95m" + str(statusCode) + "\033[0m")

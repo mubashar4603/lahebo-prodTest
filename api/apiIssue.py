@@ -1,11 +1,11 @@
 from utilities.readProperties import ReadConfig
 
 
-class apiIssuekEndPoints:
+class apiIssueEndPoints:
     baseUrl = ReadConfig.getBaseUrl()
     issueEndPoint = 'issue?sortBy=createdAt-DESC&isReport=true'
 
     @staticmethod
     def getIssueManagement():
-        apiUrl = apiIssuekEndPoints.baseUrl + apiIssuekEndPoints.issueEndPoint
+        apiUrl = apiIssueEndPoints.baseUrl + apiIssueEndPoints.issueEndPoint
         return apiUrl
