@@ -3,7 +3,7 @@ from utilities import getToken
 from utilities import getResponseHttps
 
 
-class Test_04_Legislation:
+class Test_05_Legislation:
     actionCenter = apiActionEndPoints.getActionCenter()
     username = "lahebotest1"
     password = "Lahebo@123"

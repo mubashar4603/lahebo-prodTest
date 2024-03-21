@@ -10,7 +10,8 @@ class ReadConfig:
     def getBaseUrl():
         baseUrl = config.get('common info', 'baseUrl')
         return baseUrl
+
     @staticmethod
-    def getStagUrl():
+    def getProdUrl():
         stagUrl = config.get('common info', 'stageUrl')
         return stagUrl

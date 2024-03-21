@@ -3,7 +3,7 @@ from utilities import getResponseHttps
 from utilities import getToken
 
 
-class Test_02_Legislation:
+class Test_03_Legislation:
     legislationList = apiLegEndpoints.getActList()
     legislationSubscribed = apiLegEndpoints.getSubActList()
     legalRegister = apiLegEndpoints.getLegalRegister()

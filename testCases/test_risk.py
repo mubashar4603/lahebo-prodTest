@@ -3,7 +3,7 @@ from utilities import getResponseHttps
 from utilities import getToken
 
 
-class Test_03_Legislation:
+class Test_04_Legislation:
     riskRegister = apiRiskEndPoints.getRiskRegister()
     username = "lahebotest1"
     password = "Lahebo@123"
