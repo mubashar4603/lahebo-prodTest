@@ -18,9 +18,9 @@ def getProfileData(username, password):
     org_id = myjson.get('orgId')
     loc_ids = [location['locId'] for location in myjson['locations']]
     dep_ids = [departments['depId'] for departments in myjson['departments']]
-    print("orgId value:", org_id)
-    print("locId values:", type(loc_ids), loc_ids)
-    print("depId values:", type(dep_ids), dep_ids)
+    # print("orgId value:", org_id)
+    # print("locId values:", type(loc_ids), loc_ids)
+    # print("depId values:", type(dep_ids), dep_ids)
     writeProperties.save_to_properties_file(loc_ids, dep_ids, org_id)
 
 

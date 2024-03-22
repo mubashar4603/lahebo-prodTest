@@ -1,6 +1,7 @@
 from api.apiAction import apiActionEndPoints
 from utilities import getToken
 from utilities import getResponseHttps
+import pytest
 
 
 class Test_05_Legislation:
@@ -9,6 +10,7 @@ class Test_05_Legislation:
     password = "Lahebo@123"
     token = getToken.getAccessToken(username, password)
 
+    @pytest.mark.smoke
     def test_actionAPI(self):
         responseFromRequest = getResponseHttps.request(self.actionCenter, self.token)
         myjson, statusCode = responseFromRequest

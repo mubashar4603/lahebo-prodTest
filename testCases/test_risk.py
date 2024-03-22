@@ -1,6 +1,7 @@
 from api.apiRisk import apiRiskEndPoints
 from utilities import getResponseHttps
 from utilities import getToken
+import pytest
 
 
 class Test_04_Legislation:
@@ -9,6 +10,7 @@ class Test_04_Legislation:
     password = "Lahebo@123"
     token = getToken.getAccessToken(username, password)
 
+    @pytest.mark.smoke
     def test_riskAPI(self):
         responseFromRequest = getResponseHttps.request(self.riskRegister, self.token)
         myjson, statusCode = responseFromRequest
