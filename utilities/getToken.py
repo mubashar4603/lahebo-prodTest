@@ -19,5 +19,5 @@ def getAccessToken(username, password):
         return token
     else:
         # If the request failed, print the error message
-        print("Error response code is not matched (for get acce):", response_data.text)
+        print("Error response code is not matched (for get access token):", response_data.text)
         return None

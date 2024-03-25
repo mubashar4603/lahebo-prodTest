@@ -2,8 +2,6 @@ from api.apiAuth import apiAuthEndPoints
 from utilities import writeProperties
 from utilities import getToken
 import requests
-from utilities import getResponseHttps
-import json
 
 
 def getProfileData(username, password):
@@ -23,5 +21,3 @@ def getProfileData(username, password):
     # print("depId values:", type(dep_ids), dep_ids)
     writeProperties.save_to_properties_file(loc_ids, dep_ids, org_id)
 
-
-getProfileData("lahebotest1", "Lahebo@123")

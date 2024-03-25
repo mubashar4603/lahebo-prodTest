@@ -4,7 +4,8 @@ from utilities import readRandomProp
 
 class apiOrganizationEndpoints:
     baseUrl = ReadConfig.getBaseUrl()
-    org_id = readRandomProp.read_random_value_from_section('Organisation')
+    org_id = readRandomProp.read_random_value_from_section('Organisation', "prop.ini")
+    print(org_id)
     organization = f"organizations/{org_id}/users?"
     departments = f"organizations/{org_id}/departments"
     locations = f"organizations/{org_id}/locations"

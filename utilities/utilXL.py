@@ -29,14 +29,8 @@ def writeData(file, sheetName, rowno, columnno, data):
     return sheet.cell(row=rowno, column=columnno, value=data)
 
 
-#write list data into excel in rows
+# write list data into excel in rows
 def data_to_excel(data, filename):
-    """
-    Converts a list of lists to an Excel file.
-    Args:
-    - data (list of lists): The data to be written to the Excel file.
-    - filename (str): The name of the Excel file to be saved.
-    """
     # Create a new Excel workbook
     wb = Workbook()
     # Get the active worksheet
@@ -47,3 +41,32 @@ def data_to_excel(data, filename):
     # Save the workbook to a file
     wb.save(filename)
 
+
+def read_all_dataInList(file_name, column_a, column_b):
+    usernames = []
+    passwords = []
+    excel_path = f"/home/mubashar4603/PycharmProjects/lahebo-prodTest/TestData/{file_name}"
+
+    try:
+        # Load the workbook
+        workbook = openpyxl.load_workbook(excel_path)
+        # Get the active worksheet
+        worksheet = workbook.active
+
+        # Extract data from the specified column, starting from the second row
+        for cell_a, cell_b in zip(worksheet[column_a][1:], worksheet[column_b][1:]):
+            usernames.append(cell_a.value)
+            passwords.append(cell_b.value)
+
+    except FileNotFoundError:
+        print(f"File '{excel_path}' not found.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+    return usernames, passwords
+
+
+# Example usage:
+# username, password = read_all_dataInList('credential.xlsx', 'A', 'B')
+# print("Data from Excel:", type(username))
+# print(username, password)

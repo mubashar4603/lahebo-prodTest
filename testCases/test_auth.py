@@ -1,10 +1,9 @@
 from api.apiAuth import apiAuthEndPoints
-from utilities import getToken
 import requests
 import pytest
 from utilities import utilXL
 from utilities.customLogger import LogGen
-from utilities import getProfile
+from utilities import writeProperties, readRandomProp
 
 
 class Test_01_Auth:
@@ -13,23 +12,29 @@ class Test_01_Auth:
     verifyCode = apiAuthEndPoints.verifyCode()
     userProfile = apiAuthEndPoints.userProfile()
     loginUser = apiAuthEndPoints.loginUser()
-    username = utilXL.readData("/home/mubashar4603/PycharmProjects/lahebo-prodTest/TestData/credential.xlsx", "Sheet1",
-                               2, 1)
-    password = utilXL.readData("/home/mubashar4603/PycharmProjects/lahebo-prodTest/TestData/credential.xlsx", "Sheet1",
-                               2, 2)
-    token = getToken.getAccessToken(username, password)
+    username = readRandomProp.read_data_from_propFile('Usernames', 'prod_users.ini', 1)
+    password = readRandomProp.read_data_from_propFile('Passwords', 'prod_users.ini', 1)
+
+    @pytest.mark.smoke
+    def test_loadData(self):
+        self.logger.info("*******************************Loading Data From Excel*******************************")
+        excelData = utilXL.read_all_dataInList('credential.xlsx', 'A', 'B')
+        usernames, passwords = excelData
+        writeProperties.save_to_properties_file(prop_file_path='prod_users.ini', usernames=usernames, passwords=passwords)
+    assert True
 
     @pytest.mark.smoke
     def test_loginAPI(self):
         self.logger.info("*******************************Test_01_Auth*******************************")
-        self.logger.info(
-            "*******************************Verifying Organization Detail API*******************************")
+        self.logger.info("*******************************Verifying Organization Detail API*******************************")
+
         payload = {"username": self.username, "password": self.password}
         headers = {}
         responseFromRequest = requests.post(self.loginUser, headers=headers, data=payload)
+
         if responseFromRequest.status_code == 201:
-            # print("\033[92mLogin User API request is successfully completed: response code is \033[0m",
-            #       "\033[95m" + str(responseFromRequest.status_code) + "\033[0m")
+            tokenAccess = responseFromRequest.json()["idToken"]["jwtToken"]
+            writeProperties.save_to_properties_file(token=tokenAccess, prop_file_path="prop_token.ini")
             assert True
             self.logger.info("*******************************Login API test is passed*******************************")
         else:
@@ -39,21 +44,21 @@ class Test_01_Auth:
 
     @pytest.mark.smoke
     def test_meAPI(self):
+        token = readRandomProp.read_random_value_from_section("Token", "prop_token.ini")
         self.logger.info("*******************************Verifying meAPI*******************************")
         payload = {}
         headers = {
-            "Authorization": "Bearer " + self.token}
+            "Authorization": "Bearer " + token}
         responseFromRequest = requests.get(self.userProfile, headers=headers, data=payload)
         myjson = responseFromRequest.json()
         if responseFromRequest.status_code == 200:
-            # print("\033[92mUser Profile (me) API request is successfully completed: response code is \033[0m",
-            #       "\033[95m" + str(responseFromRequest.status_code) + "\033[0m")
+            org_id = myjson.get('orgId')
+            loc_ids = [location['locId'] for location in myjson['locations']]
+            dep_ids = [departments['depId'] for departments in myjson['departments']]
+            writeProperties.save_to_properties_file(loc_ids, dep_ids, org_id, prop_file_path="prop.ini")
             assert True
             self.logger.info("*******************************meAPI test is passed*******************************")
         else:
             # print("\033[91mYour API request aborted (server error):\033[0m")
             self.logger.info("*******************************meAPI test is failed*******************************")
             assert False
-
-
-
