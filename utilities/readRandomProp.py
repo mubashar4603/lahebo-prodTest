@@ -32,7 +32,7 @@ def read_data_from_propFile(section_name, file_name, n):
 
     # Get all values from the specified section
     section_values = list(config[section_name].values())
-    print(len(section_values))
+    # print(len(section_values))
 
     # Check if the section has enough values
     if len(section_values) < n:

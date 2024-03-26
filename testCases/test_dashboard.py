@@ -1,9 +1,8 @@
 from api.apiDashboard import apiDashboardEndpoints
 from utilities import getToken
-from utilities import getResponseHttps
+from utilities import getResponseHttps, readRandomProp
 from utilities.customLogger import LogGen
 import pytest
-import requests
 from utilities import utilXL
 from utilities import getProfile
 
@@ -15,7 +14,7 @@ class Test_02_Dashboard:
                                2, 1)
     password = utilXL.readData("/home/mubashar4603/PycharmProjects/lahebo-prodTest/TestData/credential.xlsx", "Sheet1",
                                2, 2)
-    token = getToken.getAccessToken(username, password)
+    token = readRandomProp.read_random_value_from_section('Token', 'prop_token.ini')
 
     @pytest.mark.smoke
     def test_dashboardStats(self):

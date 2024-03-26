@@ -16,39 +16,28 @@ def save_to_properties_file(loc_ids=None, dep_ids=None, org_id=None, token=None,
     if isinstance(loc_ids, list) and loc_ids:
         for index, value in enumerate(loc_ids):
             config['Locations']['value{}'.format(index + 1)] = value
-    else:
-        print(None)
+
     # for writing the dept IDs into prop file
     if isinstance(dep_ids, list) and dep_ids:
         for index, value in enumerate(dep_ids):
             config['Departments']['value{}'.format(index + 1)] = value
-    else:
-        print(None)
 
     # for writing the usernames
     if isinstance(usernames, list) and usernames:
         for index, value in enumerate(usernames):
             config['Usernames']['value{}'.format(index + 1)] = value
-    else:
-        print(None)
 
     # for writing the passwords
     if isinstance(passwords, list) and passwords:
         for index, value in enumerate(passwords):
             config['Passwords']['value{}'.format(index + 1)] = value
-    else:
-        print(None)
 
     # for writing the org ID into prop file
-    if org_id is None:
-        print(None)
-    else:
+    if org_id is not None:
         config['Organisation']['value'] = org_id
 
     # for writing the token into prop file
-    if token is None:
-        print(None)
-    else:
+    if token is not None:
         config['Token']['value'] = token
 
     with open(prop_file_path, 'w') as configfile:

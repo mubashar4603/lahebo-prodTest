@@ -1,6 +1,6 @@
 from api.apiAction import apiActionEndPoints
 from utilities import getToken
-from utilities import getResponseHttps
+from utilities import getResponseHttps, readRandomProp
 import pytest
 
 
@@ -8,7 +8,7 @@ class Test_05_Legislation:
     actionCenter = apiActionEndPoints.getActionCenter()
     username = "lahebotest1"
     password = "Lahebo@123"
-    token = getToken.getAccessToken(username, password)
+    token = readRandomProp.read_random_value_from_section('Token', 'prop_token.ini')
 
     @pytest.mark.smoke
     def test_actionAPI(self):

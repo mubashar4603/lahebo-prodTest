@@ -34,6 +34,7 @@ class apiAuthEndPoints:
     def loginUser():
         apiUrl = apiAuthEndPoints.baseUrl + apiAuthEndPoints.loginEndPoint
         return apiUrl
+
     @staticmethod
     def generateMfaKey():
         apiUrl = apiAuthEndPoints.baseUrl + apiAuthEndPoints.associate_software_tokenEndpPoint

@@ -1,8 +1,7 @@
 import pytest
-
 from api.apiOrganisation import apiOrganizationEndpoints
 from utilities import getToken
-from utilities import getResponseHttps
+from utilities import getResponseHttps, readRandomProp
 from utilities.customLogger import LogGen
 from utilities import utilXL
 from utilities import getProfile
@@ -24,7 +23,7 @@ class Test_06_Organization:
                                2, 1)
     password = utilXL.readData("/home/mubashar4603/PycharmProjects/lahebo-prodTest/TestData/credential.xlsx", "Sheet1",
                                2, 2)
-    token = getToken.getAccessToken(username, password)
+    token = readRandomProp.read_random_value_from_section('Token', 'prop_token.ini')
 
     @pytest.mark.smoke
     def test_organization(self):

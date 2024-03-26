@@ -1,6 +1,6 @@
 from api.apiRisk import apiRiskEndPoints
 from utilities import getResponseHttps
-from utilities import getToken
+from utilities import readRandomProp
 import pytest
 
 
@@ -8,7 +8,7 @@ class Test_04_Legislation:
     riskRegister = apiRiskEndPoints.getRiskRegister()
     username = "lahebotest1"
     password = "Lahebo@123"
-    token = getToken.getAccessToken(username, password)
+    token = readRandomProp.read_random_value_from_section('Token', 'prop_token.ini')
 
     @pytest.mark.smoke
     def test_riskAPI(self):

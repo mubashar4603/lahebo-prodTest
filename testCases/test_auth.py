@@ -12,25 +12,32 @@ class Test_01_Auth:
     verifyCode = apiAuthEndPoints.verifyCode()
     userProfile = apiAuthEndPoints.userProfile()
     loginUser = apiAuthEndPoints.loginUser()
+
     username = readRandomProp.read_data_from_propFile('Usernames', 'prod_users.ini', 1)
     password = readRandomProp.read_data_from_propFile('Passwords', 'prod_users.ini', 1)
+
+    # def __init__(self, username_value, password_value):
+    #     self.username = readRandomProp.read_data_from_propFile('Usernames', 'prod_users.ini', username_value)
+    #     self.password = readRandomProp.read_data_from_propFile('Passwords', 'prod_users.ini', password_value)
 
     @pytest.mark.smoke
     def test_loadData(self):
         self.logger.info("*******************************Loading Data From Excel*******************************")
         excelData = utilXL.read_all_dataInList('credential.xlsx', 'A', 'B')
         usernames, passwords = excelData
-        writeProperties.save_to_properties_file(prop_file_path='prod_users.ini', usernames=usernames, passwords=passwords)
+        writeProperties.save_to_properties_file(prop_file_path='prod_users.ini', usernames=usernames,
+                                                passwords=passwords)
+
     assert True
 
     @pytest.mark.smoke
     def test_loginAPI(self):
         self.logger.info("*******************************Test_01_Auth*******************************")
         self.logger.info("*******************************Verifying Organization Detail API*******************************")
-
         payload = {"username": self.username, "password": self.password}
         headers = {}
         responseFromRequest = requests.post(self.loginUser, headers=headers, data=payload)
+        # print(responseFromRequest.status_code)
 
         if responseFromRequest.status_code == 201:
             tokenAccess = responseFromRequest.json()["idToken"]["jwtToken"]
@@ -62,3 +69,6 @@ class Test_01_Auth:
             # print("\033[91mYour API request aborted (server error):\033[0m")
             self.logger.info("*******************************meAPI test is failed*******************************")
             assert False
+
+
+

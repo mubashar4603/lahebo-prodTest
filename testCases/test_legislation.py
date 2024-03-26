@@ -1,5 +1,5 @@
 from api.apiLegislation import apiLegEndpoints
-from utilities import getResponseHttps
+from utilities import getResponseHttps, readRandomProp
 from utilities import getToken
 from utilities.customLogger import LogGen
 import pytest
@@ -13,7 +13,7 @@ class Test_03_Legislation:
     legislationUpdate = apiLegEndpoints.getUpdateLegislation()
     username = "lahebotest1"
     password = "Lahebo@123"
-    token = getToken.getAccessToken(username, password)
+    token = readRandomProp.read_random_value_from_section('Token', 'prop_token.ini')
 
     @pytest.mark.smoke
     def test_legislationAPI(self):
