@@ -35,8 +35,8 @@ class Test_01_Auth:
         self.logger.info("*******************************Test_01_Auth*******************************")
         self.logger.info("*******************************Verifying Organization Detail API*******************************")
         payload = {"username": self.username, "password": self.password}
-        headers = {}
-        responseFromRequest = requests.post(self.loginUser, headers=headers, data=payload)
+        headers = {"Content-Type": "application/json"}
+        responseFromRequest = requests.post(self.loginUser, headers=headers, json=payload)
         # print(responseFromRequest.status_code)
 
         if responseFromRequest.status_code == 201:
@@ -54,8 +54,7 @@ class Test_01_Auth:
         token = readRandomProp.read_random_value_from_section("Token", "prop_token.ini")
         self.logger.info("*******************************Verifying meAPI*******************************")
         payload = {}
-        headers = {
-            "Authorization": "Bearer " + token}
+        headers = {"Authorization": "Bearer " + token}
         responseFromRequest = requests.get(self.userProfile, headers=headers, data=payload)
         myjson = responseFromRequest.json()
         if responseFromRequest.status_code == 200:
